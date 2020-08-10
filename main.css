@@ -1,14 +1,14 @@
-.flag-image, .map-image {
+.flag-image, .map-image, .info-element {
   border-radius: 50%;
   width: 300px;
   height: 300px;
-
+  border: 2.5px solid black;
 }
 
 body {
-  background: #f0f0f0 ;
   font-family: 'Trebuchet MS', sans-serif;
   padding-bottom: 60px;
+  background: radial-gradient(circle, rgb(204, 204, 204) 0%, rgba(255,255,255,1) 100%);
 }
 
 .time-element {
@@ -20,14 +20,33 @@ body {
 .flag-image {
   margin: 25px;
   position: relative;
-  left: 120px;
+  left: -240px; /* -240px */
+  top: 0px;
+  z-index: 5;
 }
 
 .map-image {
   margin: 15px;
   position: relative;
-  top: -325px;
-  left: -120px;
+  top: -325px; /* -325px */
+  z-index: 6;
+  background-color: rgb(238, 238, 238);
+}
+
+.info-element {
+  margin: 15px;
+  position: relative;
+  top: -640px; /* -650px */
+  left: 240px;
+  z-index: 7;
+  background-color: rgb(238, 238, 238);
+}
+
+.info-text {
+  position: relative;
+  text-align: center;
+  top: 110px;
+  font-size: 25px;
 }
 
 .option-text {
@@ -40,13 +59,12 @@ body {
 .option {
   margin-left: 20px;
   padding: 5px;
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 20px;
 }
 
 h1 {
-  background: radial-gradient(circle, rgba(223,223,223,1) 0%, rgba(255,255,255,1) 100%);
+  background: #fafafa;
   padding: 15px;
-  background-color: seashell;
 }
 
 .center {
@@ -60,4 +78,5 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
+  background-color: rgb(231, 231, 231);
 }

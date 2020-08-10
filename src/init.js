@@ -4,8 +4,8 @@ const info = [
   {
     id: 1,
     countryName: 'Russia',
-    flag: 'https://www.cia.gov/library/publications/the-world-factbook/attachments/flags/RS-flag.jpg',
-    map: 'https://vemaps.com/uploads/img/large/ru-05.jpg',
+    flag: 'de',
+    map: 'de',
     cities: {
       Moscow: 3,
       'Saint Peterburg': 3,
@@ -15,8 +15,8 @@ const info = [
   {
     id: 2,
     countryName: 'Germany',
-    flag: 'https://www.cia.gov/library/publications/the-world-factbook/attachments/flags/GM-flag.jpg',
-    map: 'https://vemaps.com/uploads/img/large/de-05.jpg',
+    flag: 'ru',
+    map: 'ru',
     cities: {
       Berlin: 2,
       Munich: 2,
@@ -24,6 +24,9 @@ const info = [
     },
   },
 ];
+
+const country = 'in';
+const gmt = 0;
 
 const dropdownCountry = () => {
   const form = document.createElement('form');
@@ -59,20 +62,22 @@ const dropdownCity = () => {
 
 const timeDiv = document.createElement('div');
 const time = new Date();
-time.setHours(time.getHours() + 0); // magic number
-const finalTime = format(time, 'PPpp');
+time.setHours(time.getHours() + gmt);
+const clockTime = format(time, 'hh:mm:ss bbb');
+const timeInfo = format(time, 'LLLL do, EEEE, u OOOO');
 
 timeDiv.classList.add('time-element');
-timeDiv.innerHTML = `The time is <b>${finalTime}</b>`;
+timeDiv.innerHTML = `The time is <b>${clockTime}</b>`;
 
 const flagDiv = document.createElement('div');
-flagDiv.innerHTML = `<img src="${info[1].flag}" class="flag-image center""></img>`;
+flagDiv.innerHTML = `<img class="flag-image center" src="https://lipis.github.io/flag-icon-css/flags/1x1/${country}.svg">`;
 
 const mapDiv = document.createElement('div');
-mapDiv.innerHTML = '<img class="map-image center" src="https://lipis.github.io/flag-icon-css/flags/1x1/ax.svg">';
+mapDiv.innerHTML = `<img class="map-image center" src="https://raw.githubusercontent.com/djaiss/mapsicon/master/all/${country}/1024.png">`;
 
-// mapDiv.innerHTML = '<span class="flag-icon flag-icon-gr flag-icon-squared">11111</span>';
-// mapDiv.innerHTML = `<img src="${info[1].map}" class="map-image center""></img>`;
+const infoDiv = document.createElement('div');
+infoDiv.classList.add('info-element', 'center');
+infoDiv.innerHTML = `<div class="info-text"">${timeInfo}</div>`;
 
 const headerInit = () => {
   const head = document.createElement('h1');
@@ -88,14 +93,17 @@ const footer = () => {
   copyrightDiv.classList.add('footer-copyright', 'text-center', 'py-3');
   const copyrightLink = '<a href="https://github.com/Sergey89274291549">GitHub account.</a>';
   copyrightDiv.innerHTML = `© Sergey Suchkov, 2020.  Welcome to my ${copyrightLink}`;
-  footerElement.classList.add('page-footer', 'bg-light', 'border-top');
+  footerElement.classList.add('page-footer', 'border-top');
   footerElement.append(copyrightDiv);
   return footerElement;
 };
+
+const main = document.createElement('div');
+main.append(timeDiv, flagDiv, mapDiv, infoDiv);
 
 // Connecting parts of the site to the "body"-element in DOM
 export default () => {
   const element = document.getElementById('point');
   element
-    .append(headerInit(), dropdownCountry(), dropdownCity(), timeDiv, flagDiv, mapDiv, footer());
+    .append(headerInit(), dropdownCountry(), dropdownCity(), main, footer());
 };

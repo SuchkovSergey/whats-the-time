@@ -1,0 +1,57 @@
+.flag-image, .map-image {
+  border-radius: 16%;
+  border: 3px solid #3a0101;
+  box-shadow: 0 0 20px #575757;
+}
+
+body {
+  background: #CCFFD2 ;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.time-element {
+  text-align: center;
+  font-size: 24px;
+}
+
+.flag-image {
+  width: 500px;
+  height: 320px;
+  margin: 25px;
+  text-align: center;
+}
+
+.map-image {
+  width: 500px;
+  height: 320px;
+  margin: 15px;
+}
+
+.option-text {
+  padding-top: 5px;
+  padding-left: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.option {
+  margin-left: 20px;
+}
+
+h2 {
+  color: crimson;
+  padding: 15px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+
 const info = [
   {
     id: 1,
@@ -23,24 +25,28 @@ const info = [
   },
 ];
 
-const dropdownCountryInit = () => {
+const dropdownCountry = () => {
   const form = document.createElement('form');
+  form.classList.add('option-text');
   const label = document.createElement('label');
   label.innerHTML = 'Choose the country';
   const select = document.createElement('select');
   select.id = 'countries';
+  select.classList.add('option');
   const options = info.map((el) => `<option value="${el.countryName}">${el.countryName}</option>`).join('');
   select.innerHTML = options;
   form.append(label, select);
   return form;
 };
 
-const dropdownCityInit = () => {
+const dropdownCity = () => {
   const form = document.createElement('form');
+  form.classList.add('option-text');
   const label = document.createElement('label');
   label.innerHTML = 'Choose the city';
   const select = document.createElement('select');
   select.id = 'cities';
+  select.classList.add('option');
   // const currentCountry = document.getElementById('countries').textContent;
   const options = Object
     .keys(info.find((el) => el.countryName === 'Russia').cities) // 'currentCountry'
@@ -53,36 +59,40 @@ const dropdownCityInit = () => {
 
 const timeDiv = document.createElement('div');
 const time = new Date();
-timeDiv.innerHTML = `The time is ${time}`;
+time.setHours(time.getHours() + 0); // magic number
+const finalTime = format(time, 'PPpp');
+
+timeDiv.classList.add('time-element');
+timeDiv.innerHTML = `The time is <b>${finalTime}</b>`;
 
 const flagDiv = document.createElement('div');
-flagDiv.innerHTML = `<img src="${info[0].flag}" style="width:400px;height:250px;"></img>`;
+flagDiv.innerHTML = `<img src="${info[1].flag}" class="flag-image center""></img>`;
 
 const mapDiv = document.createElement('div');
-mapDiv.innerHTML = `<img src="${info[0].map}" style="width:500px;height:300px;"></img>`;
+mapDiv.innerHTML = `<img src="${info[1].map}" class="map-image center""></img>`;
 
 const headerInit = () => {
-  const divElement = document.createElement('div');
-  divElement.classList.add('dropdown');
-  divElement.innerText = "What's the time in...";
-  divElement.classList.add('page-footer', 'bg-light', 'border-bottom', 'text-center');
-  return divElement;
+  const h2 = document.createElement('h2');
+  h2.classList.add('dropdown');
+  h2.innerText = "What's the time in...";
+  h2.classList.add('bg-light', 'border-bottom', 'text-center');
+  return h2;
 };
 
-const footerInit = () => {
-  const footer = document.createElement('footer');
-  footer.setAttribute('style', 'position: fixed; bottom: 0; left: 0; right: 0');
+const footer = () => {
+  const footerElement = document.createElement('footer');
   const copyrightDiv = document.createElement('div');
   copyrightDiv.classList.add('footer-copyright', 'text-center', 'py-3');
   const copyrightLink = '<a href="https://github.com/Sergey89274291549">GitHub account.</a>';
   copyrightDiv.innerHTML = `© Sergey Suchkov, 2020.  Welcome to my ${copyrightLink}`;
-  footer.classList.add('page-footer', 'bg-light', 'border-top');
-  footer.append(copyrightDiv);
-  return footer;
+  footerElement.classList.add('page-footer', 'bg-light', 'border-top');
+  footerElement.append(copyrightDiv);
+  return footerElement;
 };
 
 // Connecting parts of the site to the "body"-element in DOM
 export default () => {
   const element = document.getElementById('point');
-  element.append(headerInit(), dropdownCountryInit(), dropdownCityInit(), timeDiv, flagDiv, mapDiv, footerInit());
+  element
+    .append(headerInit(), dropdownCountry(), dropdownCity(), timeDiv, flagDiv, mapDiv, footer());
 };

@@ -69,14 +69,17 @@ const flagDiv = document.createElement('div');
 flagDiv.innerHTML = `<img src="${info[1].flag}" class="flag-image center""></img>`;
 
 const mapDiv = document.createElement('div');
-mapDiv.innerHTML = `<img src="${info[1].map}" class="map-image center""></img>`;
+mapDiv.innerHTML = '<img class="map-image center" src="https://lipis.github.io/flag-icon-css/flags/1x1/ax.svg">';
+
+// mapDiv.innerHTML = '<span class="flag-icon flag-icon-gr flag-icon-squared">11111</span>';
+// mapDiv.innerHTML = `<img src="${info[1].map}" class="map-image center""></img>`;
 
 const headerInit = () => {
-  const h2 = document.createElement('h2');
-  h2.classList.add('dropdown');
-  h2.innerText = "What's the time in...";
-  h2.classList.add('bg-light', 'border-bottom', 'text-center');
-  return h2;
+  const head = document.createElement('h1');
+  head.classList.add('dropdown');
+  head.innerText = "What's the time in...";
+  head.classList.add('border-bottom', 'text-center');
+  return head;
 };
 
 const footer = () => {

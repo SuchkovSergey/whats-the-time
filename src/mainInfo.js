@@ -2,7 +2,7 @@ const info = {
   Europe: [
     {
       id: 1,
-      countryName: 'Russia',
+      countryName: 'Russian Federation',
       code: 'ru',
       cities: {
         Moscow: 3,

@@ -1,32 +1,20 @@
-import { format } from 'date-fns';
+import _ from 'lodash';
+import { createTime } from './utils';
+import info from './mainInfo';
 
-const info = [
-  {
-    id: 1,
-    countryName: 'Russia',
-    flag: 'de',
-    map: 'de',
-    cities: {
-      Moscow: 3,
-      'Saint Peterburg': 3,
-      Kazan: 3,
-    },
-  },
-  {
-    id: 2,
-    countryName: 'Germany',
-    flag: 'ru',
-    map: 'ru',
-    cities: {
-      Berlin: 2,
-      Munich: 2,
-      Frankfurt: 2,
-    },
-  },
-];
-
-const country = 'in';
-const gmt = 0;
+const dropdownRegion = () => {
+  const form = document.createElement('form');
+  form.classList.add('option-text');
+  const label = document.createElement('label');
+  label.innerHTML = 'Choose the region';
+  const select = document.createElement('select');
+  select.id = 'regions';
+  select.classList.add('option');
+  const options = Object.keys(info).map((el) => `<option id="region-option" value="${_.upperFirst(el)}">${_.upperFirst(el)}</option>`).join('');
+  select.innerHTML = options;
+  form.append(label, select);
+  return form;
+};
 
 const dropdownCountry = () => {
   const form = document.createElement('form');
@@ -36,8 +24,6 @@ const dropdownCountry = () => {
   const select = document.createElement('select');
   select.id = 'countries';
   select.classList.add('option');
-  const options = info.map((el) => `<option value="${el.countryName}">${el.countryName}</option>`).join('');
-  select.innerHTML = options;
   form.append(label, select);
   return form;
 };
@@ -50,34 +36,23 @@ const dropdownCity = () => {
   const select = document.createElement('select');
   select.id = 'cities';
   select.classList.add('option');
-  // const currentCountry = document.getElementById('countries').textContent;
-  const options = Object
-    .keys(info.find((el) => el.countryName === 'Russia').cities) // 'currentCountry'
-    .map((el) => `<option value="${el}">${el}</option>`)
-    .join('');
-  select.innerHTML = options;
   form.append(label, select);
   return form;
 };
 
 const timeDiv = document.createElement('div');
-const time = new Date();
-time.setHours(time.getHours() + gmt);
-const clockTime = format(time, 'hh:mm:ss bbb');
-const timeInfo = format(time, 'LLLL do, EEEE, u OOOO');
-
 timeDiv.classList.add('time-element');
-timeDiv.innerHTML = `The time is <b>${clockTime}</b>`;
+timeDiv.innerHTML = `The time is <b>${createTime(0).clockTime}</b>`;
 
 const flagDiv = document.createElement('div');
-flagDiv.innerHTML = `<img class="flag-image center" src="https://lipis.github.io/flag-icon-css/flags/1x1/${country}.svg">`;
+flagDiv.id = 'flag';
 
 const mapDiv = document.createElement('div');
-mapDiv.innerHTML = `<img class="map-image center" src="https://raw.githubusercontent.com/djaiss/mapsicon/master/all/${country}/1024.png">`;
+mapDiv.id = 'map';
 
 const infoDiv = document.createElement('div');
 infoDiv.classList.add('info-element', 'center');
-infoDiv.innerHTML = `<div class="info-text"">${timeInfo}</div>`;
+infoDiv.innerHTML = `<div class="info-text"">${createTime(0).timeInfo}</div>`;
 
 const headerInit = () => {
   const head = document.createElement('h1');
@@ -105,5 +80,5 @@ main.append(timeDiv, flagDiv, mapDiv, infoDiv);
 export default () => {
   const element = document.getElementById('point');
   element
-    .append(headerInit(), dropdownCountry(), dropdownCity(), main, footer());
+    .append(headerInit(), dropdownRegion(), dropdownCountry(), dropdownCity(), main, footer());
 };

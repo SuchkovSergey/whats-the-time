@@ -53,7 +53,19 @@ body {
   padding-top: 5px;
   padding-left: 20px;
   font-size: 20px;
-  text-align: center;
+  text-align-last:center;
+}
+
+#countries {
+  width: 214px;
+}
+
+#cities {
+  width: 230px;
+}
+
+#regions {
+  width: 240px;
 }
 
 .option {

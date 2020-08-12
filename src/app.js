@@ -1,5 +1,3 @@
-/* eslint no-param-reassign: "error" */
-
 import {
   imagesUpdate, countryOptionsUpdate, cityOptionsUpdate, regionOptionsUpdate,
 } from './utils';
@@ -16,6 +14,19 @@ const app = () => {
   };
 
   const regionOptions = document.querySelector('#regions');
+  const countryOptions = document.querySelector('#countries');
+  const cityOptions = document.querySelector('#cities');
+
+  const code = (currentState) => info[currentState.currentRegion]
+    .find((e) => e.countryName === currentState.currentCountry)
+    .code;
+  const gmt = (city) => info[state.currentRegion]
+    .find((e) => e.countryName === state.currentCountry)
+    .cities[city];
+  const cities = Object
+    .keys(info[state.currentRegion]
+      .find((e) => e.countryName === state.currentCountry).cities);
+
   regionOptions.addEventListener('change', (el) => {
     const region = el.target.value;
     const city = Object.keys(info[region][0].cities)[0];
@@ -26,41 +37,25 @@ const app = () => {
     state.currentCode = info[region][0].code;
   });
 
-  const countryOptions = document.querySelector('#countries');
   countryOptions.addEventListener('change', (el) => {
     state.currentCountry = el.target.value;
-    const city = Object
-      .keys(info[state.currentRegion]
-        .find((e) => e.countryName === state.currentCountry)
-        .cities)[0];
-    const gmt = info[state.currentRegion]
-      .find((e) => e.countryName === state.currentCountry)
-      .cities[city];
-    const { code } = info[state.currentRegion].find((e) => e.countryName === state.currentCountry);
+    const city = cities[0];
     state.currentCity = city;
-    state.currentGMT = gmt;
-    state.currentCode = code;
+    state.currentGMT = gmt(city);
+    state.currentCode = code(state);
   });
 
-  const cityOptions = document.querySelector('#cities');
   cityOptions.addEventListener('change', (el) => {
-    state.currentCity = el.target.value;
-    const gmt = info[state.currentRegion]
-      .find((e) => e.countryName === state.currentCountry)
-      .cities[el.target.value];
-    const { code } = info[state.currentRegion].find((e) => e.countryName === state.currentCountry);
-    state.currentGMT = gmt;
-    state.currentCode = code;
+    const city = el.target.value;
+    state.currentCity = city;
+    state.currentGMT = gmt(city);
+    state.currentCode = code(state);
   });
 
-  console.log(Object.keys(info));
   regionOptionsUpdate(Object.keys(info));
   countryOptionsUpdate(info[state.currentRegion].map((e) => e.countryName));
-  cityOptionsUpdate(Object
-    .keys(info[state.currentRegion].find((e) => e.countryName === state.currentCountry)
-      .cities));
-
-  imagesUpdate('ru', state.currentGMT);
+  cityOptionsUpdate(cities);
+  imagesUpdate(state.currentCode, state.currentGMT);
   watchState(state);
 };
 

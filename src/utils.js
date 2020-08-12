@@ -1,11 +1,11 @@
 import { format, add } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 
-export const createTime = (gmt) => {
-  const minutes = gmt % 1 === 0 ? 0 : 30;
-  const time = utcToZonedTime(add(new Date(), { hours: gmt, minutes }), { timeZone: 'Europe/London' });
+export const createTime = (hours) => {
+  const minutes = hours % 1 === 0 ? 0 : 30;
+  const time = utcToZonedTime(add(new Date(), { hours, minutes }), { timeZone: 'Europe/London' });
   const clockTime = format(time, 'HH:mm:ss');
-  const currentGMT = `${Math.floor(gmt / 1)}:${gmt % 1 === 0 ? '00' : '30'}`;
+  const currentGMT = `${Math.floor(hours / 1)}:${hours % 1 === 0 ? '00' : '30'}`;
   const timeInfo = format(time, `LLLL do, EEEE, u 'GMT ${currentGMT}`);
   return { clockTime, timeInfo };
 };
@@ -27,26 +27,15 @@ export const makeDropdown = (labelText, selectId) => {
   return form;
 };
 
-export const regionOptionsUpdate = (countries) => {
-  const select = document.getElementById('regions');
-  select.innerHTML = '';
-  const options = countries.map((el) => `<option id="region-option" value="${el}">${el}</option>`).join('');
-  select.innerHTML = options;
+const makeOptionsUpdate = (name) => (elements) => {
+  document.getElementById(name).innerHTML = elements
+    .map((el) => `<option id="${name}-option" value="${el}">${el}</option>`)
+    .join('');
 };
 
-export const countryOptionsUpdate = (countries) => {
-  const select = document.getElementById('countries');
-  select.innerHTML = '';
-  const options = countries.map((el) => `<option id="country-option" value="${el}">${el}</option>`).join('');
-  select.innerHTML = options;
-};
-
-export const cityOptionsUpdate = (cities) => {
-  const select = document.getElementById('cities');
-  select.innerHTML = '';
-  const options = cities.map((el) => `<option id="city-option" value="${el}">${el}</option>`).join('');
-  select.innerHTML = options;
-};
+export const regionOptionsUpdate = makeOptionsUpdate('regions');
+export const countryOptionsUpdate = makeOptionsUpdate('countries');
+export const cityOptionsUpdate = makeOptionsUpdate('cities');
 
 export const imagesUpdate = (code, gmt) => {
   document
@@ -56,6 +45,6 @@ export const imagesUpdate = (code, gmt) => {
     .getElementById('map')
     .innerHTML = `<img class="map-image center" src="https://raw.githubusercontent.com/djaiss/mapsicon/master/all/${code}/1024.png">`;
   document
-    .querySelector('.info-element')
-    .innerHTML = `<div class="info-text""><b>${createTime(gmt).timeInfo}</b></div>`;
+    .querySelector('.info-text')
+    .innerHTML = `<b>${createTime(gmt).timeInfo}</b>`;
 };

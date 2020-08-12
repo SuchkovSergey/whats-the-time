@@ -2,6 +2,12 @@
 
 # frontend-training-lvl1
 
-[What's the time](https://frontend-training-lvl1.vercel.app/) (refactoring code)
+Welcome to the [What's the time app](https://frontend-training-lvl1.vercel.app/) (refactoring code)
 
 "What's the time" app provides an information about current time in different cities worldwide
+
+### Installing
+
+```
+npm install what_is_the_time
+```

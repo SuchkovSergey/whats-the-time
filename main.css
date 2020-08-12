@@ -1,3 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+ }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  background: #f3f3f3;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 15px;
+  margin-bottom: 18px;
+}
+
+body {
+  font-family: 'Trebuchet MS', sans-serif;
+  background: radial-gradient(circle, rgb(204, 204, 204) 0%, rgba(255,255,255,1) 100%);
+}
+
+#point {
+  position: relative;
+}
+
+/* Circles with flag, map and time information */
 .flag-image, .map-image, .info-element, .time-element {
   border-radius: 50%;
   width: 300px;
@@ -7,39 +37,20 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  left: 0px;
+  left: 0;
   position: absolute;
   background-color: rgb(238, 238, 238);
 }
 
-body {
-  font-family: 'Trebuchet MS', sans-serif;
-  background: radial-gradient(circle, rgb(204, 204, 204) 0%, rgba(255,255,255,1) 100%);
-}
-
-.header {
-  background: #f3f3f3;
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  padding: 15px;
-  margin-bottom: 25px;
-}
-
-
-#main {
-  position: relative;
-}
-
 .flag-image {
-  top: -60px;
   right: 690px;
+  top: 130px;
   z-index: 5;
 }
 
 .map-image {
   right: -690px;
-  top: -60px;
+  top: 130px;
   z-index: 6;
 }
 
@@ -55,6 +66,7 @@ body {
   z-index: 7;
 }
 
+/* Texts inside information circles */
 .info-text, .time-text {
   position: relative;
   text-align: center;
@@ -67,10 +79,11 @@ body {
 
 .time-text {
   top: 125px;
-  left: -20px;
+  left: -25px;
   font-size: 40px;
 }
 
+/* Texts inside select elements */
 .option-text {
   padding-top: 5px;
   padding-left: 20px;
@@ -78,6 +91,14 @@ body {
   text-align-last: center;
 }
 
+.option {
+  margin-left: 20px;
+  padding: 5px;
+  border-radius: 20px;
+  font-size: 18px;
+}
+
+/* Select elements width */
 #countries {
   width: 214px;
 }
@@ -90,19 +111,7 @@ body {
   width: 240px;
 }
 
-.option {
-  margin-left: 20px;
-  padding: 5px;
-  border-radius: 20px;
-  font-size: 18px;
-}
-
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
+/* Footer customization */
 footer {
   position: fixed;
   bottom: 0;

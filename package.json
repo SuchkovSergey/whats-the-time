@@ -44,6 +44,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
+    "countries-and-timezones": "^2.2.0",
+    "country-code-lookup": "0.0.17",
     "date-fns": "^2.15.0",
     "date-fns-tz": "^1.0.10",
     "i18next": "^19.3.3",

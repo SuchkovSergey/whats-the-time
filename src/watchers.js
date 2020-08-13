@@ -5,25 +5,27 @@ import {
 import info from './mainInfo';
 
 const watchState = (state) => {
-  watch(state, () => { imagesUpdate(state.currentCode, state.currentGMT); });
+  watch(state, () => {
+    const { currentCode, currentOffset, currentStrOffset } = state;
+    imagesUpdate(currentCode, currentOffset, currentStrOffset);
+  });
 
-  watch(state, 'currentRegion', () => {
-    countryOptionsUpdate(info[state.currentRegion].map(({ countryName }) => countryName));
+  watch(state, 'currentContinent', () => {
+    const countries = Object.keys(info[state.currentContinent]);
+    countryOptionsUpdate(countries);
   });
 
   watch(state, 'currentCountry', () => {
-    cityOptionsUpdate(Object
-      .keys(info[state.currentRegion]
-        .find(({ countryName }) => countryName === state.currentCountry)
-        .cities));
+    const cities = Object.keys(info[state.currentContinent][state.currentCountry].cities).sort();
+    cityOptionsUpdate(cities);
   });
 
-  let clock = setInterval(clockUpdate(state.currentGMT), 1000);
+  let clock = setInterval(clockUpdate(state.currentOffset), 1000);
 
   watch(state, 'currentCity', () => {
     clearInterval(clock);
-    setTimeout(clockUpdate(state.currentGMT), 0);
-    clock = setInterval(clockUpdate(state.currentGMT), 1000);
+    setTimeout(clockUpdate(state.currentOffset), 0);
+    clock = setInterval(clockUpdate(state.currentOffset), 1000);
   });
 };
 

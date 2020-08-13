@@ -1,18 +1,16 @@
 import { format, add } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 
-export const createTime = (hours) => {
-  const minutes = hours % 1 === 0 ? 0 : 30;
-  const time = utcToZonedTime(add(new Date(), { hours, minutes }), { timeZone: 'Europe/London' });
+export const createTime = (minutes = 0, strOffset = '+00:00') => {
+  const time = utcToZonedTime(add(new Date(), { minutes }), { timeZone: 'Europe/London' });
   const clockTime = format(time, 'HH:mm:ss');
-  const currentGMT = `${Math.floor(hours / 1)}:${hours % 1 === 0 ? '00' : '30'}`;
-  const timeInfo = format(time, `LLLL do, EEEE, u 'GMT ${currentGMT}`);
+  const timeInfo = format(time, `LLLL do, EEEE, u 'GMT ${strOffset}`);
   return { clockTime, timeInfo };
 };
 
-export const clockUpdate = (gmt) => () => {
+export const clockUpdate = (offset) => () => {
   const timeDiv = document.querySelector('.time-text');
-  timeDiv.innerHTML = `<b>${createTime(gmt).clockTime}</b>`;
+  timeDiv.innerHTML = `<b>${createTime(offset).clockTime}</b>`;
 };
 
 export const makeDropdown = (labelText, selectId) => {
@@ -33,18 +31,18 @@ const makeOptionsUpdate = (name) => (elements) => {
     .join('');
 };
 
-export const regionOptionsUpdate = makeOptionsUpdate('regions');
+export const continentsOptionsUpdate = makeOptionsUpdate('continents');
 export const countryOptionsUpdate = makeOptionsUpdate('countries');
 export const cityOptionsUpdate = makeOptionsUpdate('cities');
 
-export const imagesUpdate = (code, gmt) => {
-  document
-    .getElementById('flag')
-    .innerHTML = `<img class="flag-image center" src="https://lipis.github.io/flag-icon-css/flags/1x1/${code}.svg">`;
-  document
-    .getElementById('map')
-    .innerHTML = `<img class="map-image center" src="https://raw.githubusercontent.com/djaiss/mapsicon/master/all/${code}/1024.png">`;
+export const imagesUpdate = (code, offset, strOffset) => {
   document
     .querySelector('.info-text')
-    .innerHTML = `<b>${createTime(gmt).timeInfo}</b>`;
+    .innerHTML = `<b>${createTime(offset, strOffset).timeInfo}</b>`;
+  document
+    .getElementById('flag')
+    .innerHTML = `<img class="flag-image center" src="https://lipis.github.io/flag-icon-css/flags/1x1/${code.toLowerCase()}.svg">`;
+  document
+    .getElementById('map')
+    .innerHTML = `<img class="map-image center" src="https://raw.githubusercontent.com/djaiss/mapsicon/master/all/${code.toLowerCase()}/1024.png">`;
 };

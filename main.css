@@ -1,3 +1,5 @@
+@import 'node_modules/flag-icons/css/flag-icons.css';
+
 * {
   margin: 0;
   padding: 0;
@@ -30,8 +32,8 @@ body {
 /* Circles with flag, map and time information */
 .flag-image, .map-image, .info-element, .time-element {
   border-radius: 50%;
-  width: 300px;
-  height: 300px;
+  width: 300px !important;
+  height: 300px !important;
   border: 2.5px solid black;
   margin-top: 25px;
   margin-left: auto;

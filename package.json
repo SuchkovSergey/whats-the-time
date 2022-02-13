@@ -10,15 +10,11 @@
     "dist"
   ],
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Sergey89274291549/frontend-training-lvl1.git"
+    "type": "git"
   },
   "author": "Sergey Suchkov",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Sergey89274291549/frontend-training-lvl1/issues"
-  },
-  "homepage": "https://github.com/Sergey89274291549/frontend-training-lvl1#readme",
+  "homepage": "https://github.com/SergeySuchkov",
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.11.1",
@@ -35,6 +31,8 @@
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jest": "^23.8.2",
     "exports-loader": "^0.7.0",
+    "file-loader": "^6.2.0",
+    "flag-icons": "^6.1.1",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.9.0",
     "style-loader": "^1.2.1",

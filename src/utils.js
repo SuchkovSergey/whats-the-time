@@ -2,7 +2,7 @@ import { format, add } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 
 export const createTime = (minutes = 0, strOffset = '+00:00') => {
-  const time = utcToZonedTime(add(new Date(), { minutes }), { timeZone: 'Europe/London' });
+  const time = utcToZonedTime(add(new Date(), { minutes }), 'Europe/London');
   const clockTime = format(time, 'HH:mm:ss');
   const timeInfo = format(time, `LLLL do, EEEE, u 'GMT ${strOffset}`);
   return { clockTime, timeInfo };
@@ -41,7 +41,7 @@ export const imagesUpdate = (code, offset, strOffset) => {
     .innerHTML = `<b>${createTime(offset, strOffset).timeInfo}</b>`;
   document
     .getElementById('flag')
-    .innerHTML = `<img class="flag-image center" src="https://lipis.github.io/flag-icon-css/flags/1x1/${code.toLowerCase()}.svg">`;
+    .className = `flag-image center fi fi-${code.toLowerCase()} fis`;
   document
     .getElementById('map')
     .innerHTML = `<img class="map-image center" src="https://raw.githubusercontent.com/djaiss/mapsicon/master/all/${code.toLowerCase()}/1024.png">`;

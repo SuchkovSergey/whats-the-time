@@ -34,7 +34,7 @@ const main = () => {
   return mainDiv;
 };
 
-const githubLink = '<a href="https://github.com/Sergey89274291549">GitHub account.</a>';
+const githubLink = '<a href="https://github.com/SuchkovSergey">GitHub account.</a>';
 
 const footer = () => {
   const footerElement = document.createElement('footer');

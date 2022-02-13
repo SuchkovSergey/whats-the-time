@@ -1,5 +1,5 @@
 import '../main.css';
-import init from './init';
+import init from './utils/init';
 import app from './app';
 
 init();

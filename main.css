@@ -1,132 +1,132 @@
 @import 'node_modules/flag-icons/css/flag-icons.css';
 
 * {
-  margin: 0;
-  padding: 0;
- }
+    margin: 0;
+    padding: 0;
+}
 
 .center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .header {
-  background: #f3f3f3;
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  padding: 15px;
-  margin-bottom: 18px;
+    background: #F3F3F3;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 15px;
+    margin-bottom: 18px;
 }
 
 body {
-  font-family: 'Trebuchet MS', sans-serif;
-  background: radial-gradient(circle, rgb(204, 204, 204) 0%, rgba(255,255,255,1) 100%);
+    font-family: 'Trebuchet MS', sans-serif;
+    background: radial-gradient(circle, rgb(204, 204, 204) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 #point {
-  position: relative;
+    position: relative;
 }
 
 /* Circles with flag, map and time information */
 .flag-image, .map-image, .info-element, .time-element {
-  border-radius: 50%;
-  width: 300px !important;
-  height: 300px !important;
-  border: 2.5px solid black;
-  margin-top: 25px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  left: 0;
-  position: absolute;
-  background-color: rgb(238, 238, 238);
+    border-radius: 50%;
+    width: 300px !important;
+    height: 300px !important;
+    border: 2.5px solid black;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    left: 0;
+    position: absolute;
+    background-color: rgb(238, 238, 238);
 }
 
 .flag-image {
-  right: 690px;
-  z-index: 5;
+    right: 690px;
+    z-index: 5;
 }
 
 .map-image {
-  right: -690px;
-  z-index: 6;
+    right: -690px;
+    z-index: 6;
 }
 
 .info-element {
-  right: -230px;
-  z-index: 8;
+    right: -230px;
+    z-index: 8;
 }
 
 .time-element {
-  text-align: center;
-  font-size: 30px;
-  right: 230px;
-  z-index: 7;
+    text-align: center;
+    font-size: 30px;
+    right: 230px;
+    z-index: 7;
 }
 
 /* Texts inside information circles */
 .info-text, .time-text {
-  position: relative;
-  text-align: center;
+    position: relative;
+    text-align: center;
 }
 
 .info-text {
-  top: 120px;
-  font-size: 24px;
+    top: 120px;
+    font-size: 24px;
 }
 
 .time-text {
-  top: 125px;
-  left: -25px;
-  font-size: 40px;
+    top: 125px;
+    left: -25px;
+    font-size: 40px;
 }
 
 /* Texts inside select elements */
 .option-text {
-  padding-top: 5px;
-  padding-left: 20px;
-  font-size: 20px;
-  text-align-last: center;
+    padding-top: 5px;
+    padding-left: 20px;
+    font-size: 20px;
+    text-align-last: center;
 }
 
 .option {
-  margin-left: 20px;
-  padding: 5px;
-  border-radius: 20px;
-  font-size: 18px;
+    margin-left: 20px;
+    padding: 5px;
+    border-radius: 20px;
+    font-size: 18px;
 }
 
 /* Select elements width */
 
 #countries, #cities, #continents {
-  width: 230px;
+    width: 230px;
 }
 
 #continents {
-  margin-left: 25px;
+    margin-left: 25px;
 }
 
 #countries {
-  margin-left: 15px;
+    margin-left: 15px;
 }
 
 #cities {
-  margin-left: 20px;
+    margin-left: 20px;
 }
 
 /* Footer customization */
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgb(231, 231, 231);
-  padding: 15px;
-  font-size: 16px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(231, 231, 231);
+    padding: 15px;
+    font-size: 16px;
 }
 
 .footer-copyright {
-  text-align: center;
+    text-align: center;
 }

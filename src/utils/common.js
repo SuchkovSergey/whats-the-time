@@ -72,12 +72,12 @@ const defineCode = defineZoneInformation('code');
 
 export const setInitialOption = (state) => {
     const firstContinent = Object.entries(state.timeZonesInfo)[0];
-    const [ continentName, continentData ] = firstContinent;
+    const [continentName, continentData] = firstContinent;
     const firstCountry = Object.entries(continentData)[0];
-    const [ countryName, countryData ] = firstCountry;
+    const [countryName, countryData] = firstCountry;
     const { code, cities } = countryData;
     const firstCity = Object.entries(cities)[0];
-    const [ cityName, cityData ] = firstCity;
+    const [cityName, cityData] = firstCity;
 
     state.continent = continentName;
     state.country = countryName;
@@ -94,13 +94,14 @@ export const setSelectListeners = (state) => {
 
     continentOptions.addEventListener('change', ({ target }) => {
         const continentName = target.value;
-        const [ country, { cities, code } ] = Object.entries(state.timeZonesInfo[continentName])[0];
+        const [country, { cities, code }] = Object.entries(state.timeZonesInfo[continentName])[0];
         const cityInfo = Object.entries(cities)[0];
+        const [cityName, cityData] = cityInfo;
         state.continent = continentName;
         state.country = country;
-        state.city = cityInfo[0];
-        state.timeOffset = cityInfo[1].offset;
-        state.timeOffsetText = cityInfo[1].strOffset;
+        state.city = cityName;
+        state.timeOffset = cityData.offset;
+        state.timeOffsetText = cityData.strOffset;
         state.code = code;
     });
 

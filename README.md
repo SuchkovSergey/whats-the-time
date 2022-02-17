@@ -3,7 +3,7 @@
 
 # What's the time
 
-Welcome to the [What's the time app](https://frontend-training-lvl1.vercel.app/)
+Welcome to the [What's the time app](https://whats-the-time-app-sergey1996.vercel.app/)
 
 "What's the time" app provides an information about current time in different cities
 worldwide

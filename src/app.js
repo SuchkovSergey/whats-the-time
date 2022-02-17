@@ -3,9 +3,8 @@ import {
     setCountryOptions,
     setCityOptions,
     setContinentsOptions,
-    setSelectListeners,
-    setInitialOption,
 } from './utils/common';
+import { setSelectListeners, setInitialOption } from './utils/init';
 import getTimeZonesInfo from './utils/timeZonesInfo';
 import watchState from './watchers/index';
 
